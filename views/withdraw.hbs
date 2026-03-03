@@ -49,34 +49,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{#if has100Cash}}
-                                {{#each papeletas}}
-                                    <tr>
-                                        <td>100:</td>
-                                        <td>{{papeletas["100"].value()}}</td>
-                                    </tr>
-                            {{/if}}
-                            {{#if has200Cash}}
-                                {{#each papeletas}}
-                                    <tr>
-                                        <td>{{papeletas["200"]}}</td>
-                                        <td>{{papeletas["200"].Value()}}</td>
-                                    </tr>
-                            {{/if}}
-                            {{#if has500Cash}}
-                                {{#each papeletas}}
-                                    <tr>
-                                        <td>{{papeletas["500"]}}</td>
-                                        <td>{{papeletas["500"].Value()}}</td>
-                                    </tr>
-                            {{/if}}
-                            {{#if has1000Cash}}
-                                {{#each papeletas}}
-                                    <tr>
-                                        <td>{{papeletas["1000"]}}</td>
-                                        <td>{{papeletas["1000"].Value()}}</td>
-                                    </tr>
-                            {{/if}}
+                            {{#each bills as |bill|}}
+                                <tr>
+                                    <td>{{this.bill}}</td>
+                                    <td>{{this.bill.value()}}</td>
+                                </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

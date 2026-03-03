@@ -5,15 +5,12 @@ import { projectRoot } from './utils/paths.js';
 import homeRouter from './routes/HomeRouter.js'
 import { ValidAmount } from './utils/helpers/hbs/amountValidation.js';
 import withdrawRouter from './routes/WithdrawRouter.js';
-import { WithdrawEffective, Withdraw100_500, Withdraw200_1000 } from './utils/helpers/hbs/withdrawProcess.js'
+import { WithdrawProcess } from './utils/helpers/hbs/withdrawProcess.js'
 
 const app = express();
 
 //render engine config
-app.engine("hbs", engine({ validAmount: ValidAmount,
-                            Withdraw100_500: Withdraw100_500, 
-                            withdraw200_1000: Withdraw200_1000, 
-                            withdrawEffective: WithdrawEffective }));
+app.engine("hbs", engine({ validAmount: ValidAmount, WithdrawProcess }));
 app.set("view engine", "hbs");
 app.set("views", "views");
 

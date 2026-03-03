@@ -1,9 +1,9 @@
 import express from 'express';
-import { WithdrawCashMode } from '../utils/enums/WithdrawMode.js';
 import { ValidAmount } from '../utils/helpers/hbs/amountValidation.js';
-import { WithdrawEffective, Withdraw100_500, Withdraw200_1000 } from '../utils/helpers/hbs/withdrawProcess.js'
+import { WithdrawProcess } from '../utils/helpers/hbs/withdrawProcess.js'
 
 const router = express.Router();
+export let result = {};
 
 router.get("/", (req, res, next) => {
     res.status(200).render("index", { layout: false, title: "Home" });
@@ -11,21 +11,12 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
     const amountToWithdraw = parseInt(req.body.Amount);
+    const mode = parseInt(req.body.mode);
 
     if (ValidAmount(amountToWithdraw)) {
-        switch (Number(req.body.mode)) {
-            case WithdrawCashMode.EFFECTIVE:
-                WithdrawEffective(amountToWithdraw);
-                break;
-
-            case WithdrawCashMode.CASH_200_1000:
-                Withdraw200_1000(amountToWithdraw);
-                break;
-
-            case WithdrawCashMode.CASH_100_500:
-                Withdraw100_500(amountToWithdraw);
-                break;
-        }
+        result = WithdrawProcess(amountToWithdraw, mode);
+    } else {
+        res.render("index", {layput: false, error: "El monto es incorrecto"})
     }
 
     res.redirect("/withdraw");
