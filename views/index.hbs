@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>{{title}}</title>
 </head>
 
@@ -36,6 +37,13 @@
             <div class="col-12 col-sm-5 col-md-5">
                 <h1 class="display-5 fw-bold text-start">Retiro de Efectivo</h1>
                 <div class="card">
+                    {{#if error}}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <div>{{error}}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {{/if}}
+
                     <div class="card-header bg-secondary text-light">
                         <h5 class="text-center fw-bold">Monto a retirar:</h5>
                     </div>
@@ -49,13 +57,14 @@
                             <div class="mb-3">
                                 <label for="withdraw-mode" class="form-label">Modo de dispension:</label>
                                 <select name="mode" id="withdraw-mode" class="form-select" required="required">
-                                    <option value="1">Modo eficiente</option>
-                                    <option value="2">Papeletas 200/1000</option>
-                                    <option value="3">Papeletas 100/500</option>
+                                    <option value="1">Papeletas 200/1000</option>
+                                    <option value="2">Papeletas 100/500</option>
+                                    <option value="3" selected="selected">Modo eficiente</option>
                                 </select>
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-success float-center">Retirar</button>
+                                <button type="submit" class="btn btn-success float-center"><i class="bi bi-cash"></i>
+                                    Retirar</button>
                             </div>
                         </form>
                     </div>

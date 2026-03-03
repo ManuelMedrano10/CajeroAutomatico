@@ -3,14 +3,13 @@ import { engine } from 'express-handlebars';
 import path from 'path';
 import { projectRoot } from './utils/paths.js';
 import homeRouter from './routes/HomeRouter.js'
-import { ValidAmount } from './utils/helpers/hbs/amountValidation.js';
 import withdrawRouter from './routes/WithdrawRouter.js';
 import { WithdrawProcess } from './utils/helpers/hbs/withdrawProcess.js'
 
 const app = express();
 
 //render engine config
-app.engine("hbs", engine({ validAmount: ValidAmount, WithdrawProcess }));
+app.engine("hbs", engine({ withdrawProcess: WithdrawProcess }));
 app.set("view engine", "hbs");
 app.set("views", "views");
 
